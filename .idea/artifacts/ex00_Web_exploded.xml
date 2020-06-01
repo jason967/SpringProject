@@ -23,6 +23,9 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.6.6" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.6.6" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:5.1.9.RELEASE" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.10.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.4" />
         </element>
       </element>
     </root>
