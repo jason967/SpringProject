@@ -3,7 +3,8 @@ package com.jaewoong.domain;
 import lombok.Data;
 
 @Data
-public class SampleDTO {
+public class SampleDTO
+{
     private String name;
     private int age;
 }
