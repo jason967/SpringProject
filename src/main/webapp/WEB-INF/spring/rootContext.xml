@@ -7,20 +7,24 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
-    <!--
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-        <property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
+        <!--
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
         <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:choi"></property>
+        -->
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+        <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:choi"></property>
         <property name="username" value="book_ex"></property>
         <property name="password" value="book_ex"></property>
     </bean>
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
         <constructor-arg ref="hikariConfig"></constructor-arg>
     </bean>
-    <bean id="sq;SessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
--->
+
     <mybatis-spring:scan base-package="com.jaewoong.mapper"></mybatis-spring:scan>
+
     <context:component-scan base-package="com.jaewoong.sample"></context:component-scan>
 </beans>
