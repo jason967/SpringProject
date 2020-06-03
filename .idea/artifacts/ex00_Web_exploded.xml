@@ -41,6 +41,7 @@
           <element id="library" level="project" name="Maven: com.oracle.ojdbc:ucp:19.3.0.0" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.4" />
           <element id="library" level="project" name="Maven: com.oracle.ojdbc:orai18n:19.3.0.0" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.8" />
         </element>
       </element>
     </root>

@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Log4j
-@RequestMapping("/board/*")
+@RequestMapping("/board/")
 @AllArgsConstructor
 
 public class BoardController {
@@ -37,7 +37,7 @@ public class BoardController {
 
         rttr.addFlashAttribute("result",board.getBno());
 
-        return "redirect:/board/list";
+        return "list";
     }
 
     @GetMapping("/get")
@@ -56,7 +56,7 @@ public class BoardController {
         {
             rttr.addFlashAttribute("result","success");
         }
-        return "redirect:/board/list";
+        return "list";
     }
     @PostMapping("/remove")
     public String remove(@RequestParam("bno") Long bno,RedirectAttributes rttr)
@@ -66,6 +66,6 @@ public class BoardController {
         {
             rttr.addFlashAttribute("result","sucess");
         }
-        return "redirect:/board/list";
+        return "list";
     }
 }
