@@ -18,6 +18,6 @@ public class HomeController {
     public String home (Locale locale,Model model)
     {
         logger.info("Welcome home! the client locale if{}.",locale);
-        return "home/index";
+        return "index";
     }
 }
