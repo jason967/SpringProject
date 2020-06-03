@@ -9,6 +9,6 @@ public class BoardVO {
     private String title;
     private String content;
     private String writer;
-    private Data reData;
-    private Data upDateData;
+    private Data regdate;
+    private Data updateDate;
 }
