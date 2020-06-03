@@ -21,7 +21,7 @@
             select seq_board.nextval from dual
         </selectKey>
         insert into tbl_board (bno,title,content,writer)
-        values (seq_board.nextval,#{title},#{content},#{writer})
+        values (#{bno},#{title},#{content},#{writer})
     </insert>
 
     <select id="read" resultType="com.jaewoong.domain.BoardVO">
