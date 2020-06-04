@@ -2,6 +2,8 @@ package com.jaewoong.domain;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class BoardVO {
 
@@ -9,6 +11,6 @@ public class BoardVO {
     private String title;
     private String content;
     private String writer;
-    private Data regdate;
-    private Data updateDate;
+    private Date regdate;
+    private Date updateDate;
 }

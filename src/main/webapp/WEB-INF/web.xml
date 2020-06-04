@@ -35,6 +35,7 @@
     <url-pattern>/</url-pattern>
 </servlet-mapping>
 
+    <!--한글 깨짐 방지 필터-->
     <filter>
         <filter-name>encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

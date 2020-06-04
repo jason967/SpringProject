@@ -3,6 +3,7 @@ package com.jaewoong.controller;
 
 import com.jaewoong.domain.BoardVO;
 import com.jaewoong.service.BoardService;
+import com.jaewoong.service.BoardServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
@@ -28,22 +29,28 @@ public class BoardController {
         model.addAttribute("list",service.getList());
     }
 
+
+    @GetMapping("/register")
+    public void register(){
+        log.info("GET_register");
+    }
+
     @PostMapping("/register")
     public String register(BoardVO board, RedirectAttributes rttr)
     {
-        log.info("register: "+board);
-
+        log.info("POST_register: "+board);
+        log.info("시작한다");
         service.register(board);
-
+        log.info("들어왔어");
         rttr.addFlashAttribute("result",board.getBno());
 
-        return "list";
+        return "redirect:/board/list";
     }
 
-    @GetMapping("/get")
+    @GetMapping({"/get","/modify"})
     public void get(@RequestParam("bno") Long bno,Model model)
     {
-        log.info("/get");
+        log.info("/get or modify");
         model.addAttribute("board",service.get(bno));
     }
 
@@ -56,7 +63,7 @@ public class BoardController {
         {
             rttr.addFlashAttribute("result","success");
         }
-        return "list";
+        return "redirect:/board/list";
     }
     @PostMapping("/remove")
     public String remove(@RequestParam("bno") Long bno,RedirectAttributes rttr)
@@ -66,6 +73,6 @@ public class BoardController {
         {
             rttr.addFlashAttribute("result","sucess");
         }
-        return "list";
+        return "redirect:/board/list";
     }
 }
