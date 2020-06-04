@@ -6,11 +6,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-<<<<<<< HEAD
-        <param-value>/WEB-INF/spring/root-context.xml</param-value>
-=======
         <param-value>WEB-INF/spring/*Context.xml</param-value>
->>>>>>> donttouch
     </context-param>
 
     <listener>
