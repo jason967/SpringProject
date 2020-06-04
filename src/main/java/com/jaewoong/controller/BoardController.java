@@ -31,17 +31,13 @@ public class BoardController {
 
 
     @GetMapping("/register")
-    public void register(){
-        log.info("GET_register");
-    }
+    public void register() { }
 
     @PostMapping("/register")
     public String register(BoardVO board, RedirectAttributes rttr)
     {
         log.info("POST_register: "+board);
-        log.info("시작한다");
         service.register(board);
-        log.info("들어왔어");
         rttr.addFlashAttribute("result",board.getBno());
 
         return "redirect:/board/list";
@@ -65,6 +61,7 @@ public class BoardController {
         }
         return "redirect:/board/list";
     }
+
     @PostMapping("/remove")
     public String remove(@RequestParam("bno") Long bno,RedirectAttributes rttr)
     {
