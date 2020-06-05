@@ -1,6 +1,7 @@
 package com.jaewoong.service;
 
 import com.jaewoong.domain.BoardVO;
+import com.jaewoong.domain.Criteria;
 
 import java.util.List;
 
@@ -14,5 +15,7 @@ public interface BoardService {
 
     public boolean remove(Long bno);
 
-    public List<BoardVO> getList();
+    //public List<BoardVO> getList();
+
+    public List<BoardVO> getList(Criteria cri);
 }

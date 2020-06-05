@@ -1,6 +1,7 @@
 package com.jaewoong.mapper;
 
 import com.jaewoong.domain.BoardVO;
+import com.jaewoong.domain.Criteria;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -9,6 +10,8 @@ public interface BoardMapper {
     public List<BoardVO> getList();
 
     public void insert(BoardVO board);
+
+    public List<BoardVO> getListWithPaging(Criteria cri);
 
     public void insertSelectKey(BoardVO board);
 

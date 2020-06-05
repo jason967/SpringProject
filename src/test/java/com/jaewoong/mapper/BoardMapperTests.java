@@ -1,6 +1,7 @@
 package com.jaewoong.mapper;
 
 import com.jaewoong.domain.BoardVO;
+import com.jaewoong.domain.Criteria;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
@@ -8,6 +9,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/rootContext.xml")
@@ -23,6 +26,16 @@ public class BoardMapperTests {
         mapper.getList().forEach(board -> log.info(board));
     }
 
+    @Test
+    public void testPaging()
+    {
+        Criteria cri = new Criteria();
+
+        cri.setPageNum(3);
+        cri.setAmount(10);
+        List<BoardVO> list = mapper.getListWithPaging(cri);
+        list.forEach(board -> log.info(board));
+    }
     @Test
     public void testInsert()
     {

@@ -3,6 +3,7 @@ package com.jaewoong.service;
 import java.util.List;
 
 import com.jaewoong.domain.BoardVO;
+import com.jaewoong.domain.Criteria;
 import com.jaewoong.mapper.BoardMapper;
 import lombok.AllArgsConstructor;
 
@@ -22,6 +23,7 @@ public class BoardServiceImpl implements BoardService
         log.info("register....."+board);
         mapper.insertSelectKey(board);
     }
+    /*
     @Override
     public List<BoardVO> getList()
     {
@@ -29,6 +31,16 @@ public class BoardServiceImpl implements BoardService
 
         return mapper.getList();
     }
+    */
+
+    @Override
+    public List<BoardVO> getList(Criteria cri)
+    {
+        log.info("get List with Criteria: "+ cri);
+
+        return mapper.getListWithPaging(cri);
+    }
+
     @Override
     public BoardVO get(Long bno)
     {
