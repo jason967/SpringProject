@@ -21,5 +21,5 @@ public interface BoardMapper {
 
     public int update(BoardVO board);
     //@Select("select * from tbl_board where bno >0")
-
+    public int getTotalCount(Criteria cri);
 }
