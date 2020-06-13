@@ -26,7 +26,7 @@ public class ReplyMapperTests
    {
       log.info(mapper);
    }
-   private Long[] bnoArr = {12202L,201L,202L,203L,204L};
+   private Long[] bnoArr = {63L,64L,65L,66L,67L};
 
    @Test
    public void testCreate()
@@ -36,7 +36,7 @@ public class ReplyMapperTests
          ReplyVO vo = new ReplyVO();
 
          vo.setBno(bnoArr[i%5]);
-         vo.setReply("댓글리스트 "+i);
+         vo.setReply("댓글 테스트 "+i);
          vo.setReplyer("replyer"+i);
 
          mapper.insert(vo);

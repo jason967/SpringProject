@@ -4,6 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="../includes/header.jsp"%>
 
+<script type="text/javascript" src="/resources/js/reply.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -25,6 +27,8 @@
         });
     });
 </script>
+
+
 
 
 <div class="row">

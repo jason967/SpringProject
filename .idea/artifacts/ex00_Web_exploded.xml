@@ -43,6 +43,13 @@
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.4" />
           <element id="library" level="project" name="Maven: com.oracle.ojdbc:orai18n:19.3.0.0" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.8" />
+          <element id="library" level="project" name="Maven: org.codehaus.woodstox:stax2-api:4.2" />
+          <element id="library" level="project" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.2" />
+          <element id="library" level="project" name="Maven: jakarta.activation:jakarta.activation-api:1.2.1" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
+          <element id="library" level="project" name="Maven: com.fasterxml.woodstox:woodstox-core:6.2.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.10.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.10.4" />
         </element>
       </element>
     </root>
