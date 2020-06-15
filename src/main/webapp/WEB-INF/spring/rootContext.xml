@@ -7,10 +7,17 @@
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
         <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:choi"></property>
         -->
+        <!-- postgre 쓸려면 수정 해야됌-->
+        <!--
         <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
         <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:choi"></property>
         <property name="username" value="book_ex"></property>
         <property name="password" value="book_ex"></property>
+        -->
+        <property name="driverClassName" value="org.postgresql.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:postgresql://localhost:8282/postgres"></property>
+        <property name="username" value="choi"></property>
+        <property name="password" value="choi1234"></property>
     </bean>
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
         <constructor-arg ref="hikariConfig"></constructor-arg>
