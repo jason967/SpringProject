@@ -36,11 +36,11 @@
             <version>5.1.9.RELEASE</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.oracle.ojdbc</groupId>
-            <artifactId>ojdbc8</artifactId>
-            <version>19.3.0.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.oracle.ojdbc</groupId>-->
+<!--            <artifactId>ojdbc8</artifactId>-->
+<!--            <version>19.3.0.0</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>com.oracle.ojdbc</groupId>
@@ -87,11 +87,11 @@
             <artifactId>mybatis</artifactId>
             <version>3.5.4</version>
         </dependency>
-        <dependency>
-            <groupId>com.oracle.ojdbc</groupId>
-            <artifactId>orai18n</artifactId>
-            <version>19.3.0.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.oracle.ojdbc</groupId>-->
+<!--            <artifactId>orai18n</artifactId>-->
+<!--            <version>19.3.0.0</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -206,5 +206,19 @@
             <version>1.2</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
