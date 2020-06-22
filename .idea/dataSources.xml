@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Oracle - @localhost" uuid="7bf984ad-308b-403a-88d7-f20270c68550">
-      <driver-ref>oracle</driver-ref>
+    <data-source source="LOCAL" name="docker_postgre" uuid="f5f24fb6-82c0-4ff6-89b1-01b767d4cab6">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <auto-commit>false</auto-commit>
-      <jdbc-driver>oracle.jdbc.driver.OracleDriver</jdbc-driver>
-      <jdbc-url>jdbc:oracle:thin:@localhost:1521:choi</jdbc-url>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:8282/postgres</jdbc-url>
     </data-source>
   </component>
 </project>

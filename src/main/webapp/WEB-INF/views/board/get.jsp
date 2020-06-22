@@ -19,7 +19,12 @@
             alert("RESULT: " + result);
         }
     )
-
+    replyService.getList({bno:bnoValue,page:1},function (list) {
+            for(var i=0,len = list.length||0;i<len;i++)
+            {
+                console.log(list[i]);
+            }
+        });
 </script>
 
 <script type="text/javascript">
