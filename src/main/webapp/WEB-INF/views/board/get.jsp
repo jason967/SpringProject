@@ -12,14 +12,45 @@
 
     var bnoValue = '<c:out value="${board.bno}"/>';
 
-    replyService.add(
-        {reply:"JS Test",replyer:"tester",bno:bnoValue}
-        ,
-        function (result) {
-            alert("RESULT: " + result);
-        }
-    )
+    //댓글 추가
+    /* replyService.add(
+         {reply:"JS Test",replyer:"tester",bno:bnoValue}
+         ,
+         function (result) {
+             alert("RESULT: " + result);
+         });
+    */
 
+
+
+    //댓글 제거
+   /* replyService.remove(23,function (count) {
+        console.log(count);
+
+        if(count=="success")
+        {
+            alert("삭제 성공");
+        }
+    }
+    ,function (err) {
+        alert("에러 발생.....");
+        });*/
+
+    //댓글 수정
+
+   /* replyService.update({
+        rno:22,
+        bno:bnoValue,
+        reply:"수정된 댓글..."
+    }, function (result) {
+        alert("수정 완료....");
+    });*/
+
+    //댓글 조회 처리
+    replyService.get(10,function (data) {
+        console.log(data);
+
+    });
 </script>
 
 <script type="text/javascript">
