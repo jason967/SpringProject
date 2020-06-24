@@ -12,14 +12,45 @@
 
     var bnoValue = '<c:out value="${board.bno}"/>';
 
-    replyService.add(
-        {reply:"JS Test",replyer:"tester",bno:bnoValue}
-        ,
-        function (result) {
-            alert("RESULT: " + result);
-        }
-    )
+    //댓글 추가
+    /* replyService.add(
+         {reply:"JS Test",replyer:"tester",bno:bnoValue}
+         ,
+         function (result) {
+             alert("RESULT: " + result);
+         });
+    */
 
+
+
+    //댓글 제거
+   /* replyService.remove(23,function (count) {
+        console.log(count);
+
+        if(count=="success")
+        {
+            alert("삭제 성공");
+        }
+    }
+    ,function (err) {
+        alert("에러 발생.....");
+        });*/
+
+    //댓글 수정
+
+   /* replyService.update({
+        rno:22,
+        bno:bnoValue,
+        reply:"수정된 댓글..."
+    }, function (result) {
+        alert("수정 완료....");
+    });*/
+
+    //댓글 조회 처리
+    replyService.get(10,function (data) {
+        console.log(data);
+
+    });
 </script>
 
 <script type="text/javascript">
@@ -41,6 +72,36 @@
             operForm.submit();
 
         });
+    });
+</script>
+<script type="text/javascript" src="/resources/js/reply.js"></script>
+<script>
+    $(document).ready(function () {
+        var bnoValue = '<c:out value="${board.bno}"/> ';
+        var replyUL = $(".chat");
+
+        showlist(1);
+
+        function showlist(page) {
+            replyService.getList({bno:bnoValue,page:page||1}, function (list) {
+                var  str="";
+                console.log("Reply!!!!!!!!!!!!!!!!!!!");
+                if(list ==null || list.length==0)
+                {
+                    replyUL.html("");
+                    return;
+                }
+                for(var i=0,len = list.length ||0; i<len;i++)
+                {
+                    str+="<li class= 'left clearfix' data-rno ='"+list[i].rno+"'>";
+                    str+="  <div><div class='header'><strong class='primary-font'>"+list[i].replyer+"</strong>";
+                    str+="  <small class='pull-right text-muted'>" + replyService.displayTime(list[i].replyDate)+"</small></div>";
+                    //str+="  <small class='pull-right text-muted'>" + list[i].replyDate+"</small></div>";
+                    str+="  <p>"+list[i].reply+"</p></div></li>";
+                }
+                replyUL.html(str);
+            });
+        }
     });
 </script>
 
@@ -107,6 +168,33 @@
 </div>
 <!-- /.row -->
 
+
+<div class="row">
+    <div class="col-lg-12">
+        <!--panel-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-comments fa-fw>"></i>
+                Reply
+            </div>
+
+            <!--panel-body-->
+            <div class="panel-body">
+                <ul class="chat">
+                    <li class="left clearfix" data-rno ='12'>
+                        <div>
+                            <div class="header">
+                                <strong class="primary-font">user00</strong>
+                                <small class="pull-right text-muted">2020-01-01 13:13</small>
+                            </div>
+                            <p>Good Job!</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

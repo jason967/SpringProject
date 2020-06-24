@@ -47,6 +47,7 @@
             e.preventDefault();
             actionForm.append("<input type = 'hidden' name='bno' value='"+$(this).attr("href")+"'>");
             actionForm.attr("action","/board/get");
+            console.log("아오이씨!!!!!!!!!");
             actionForm.submit();
         })
 

@@ -39,6 +39,7 @@ public class BoardController {
         model.addAttribute("list",service.getList(cri));
         int total = service.getTotal(cri);
         log.info("data: "+total);
+        log.info("페이지 이동!!!!!!!!!");
         model.addAttribute("pageMaker",new PageDTO(cri,total));
 
     }
