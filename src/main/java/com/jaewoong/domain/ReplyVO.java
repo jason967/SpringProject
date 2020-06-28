@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 @Data
 public class ReplyVO {
-    private Long rno;
+    private Long rno =0L;
     private Long bno;
 
     private String reply;

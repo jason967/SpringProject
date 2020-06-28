@@ -29,12 +29,13 @@ var replyService=(function(){
     function getList(param,callback,error) {
         var bno = param.bno;
         var page = param.page||1;
-
+        console.log("GET LIST");
         $.getJSON("/replies/pages/"+bno+'/'+page+".json",
             function (data) {
                 if(callback)
                 {
-                    callback(data);
+                    //callback(data);
+                    callback(data.replyCnt,data.list);
                 }
             }).fail(function (xhr,status,err) {
             if(error)
@@ -66,8 +67,8 @@ var replyService=(function(){
         console.log("RNO: "+reply.rno);
 
         $.ajax({
-            type:"put",
-            url:"/repies/"+reply.rno,
+            type:'put',
+            url:'/replies/'+reply.rno,
             date: JSON.stringify(reply),
             contentType: "application/json; charset=utf-8",
             success: function (result,status,xhr) {
@@ -79,6 +80,7 @@ var replyService=(function(){
             error: function(xhr,status,er) {
                 if (error)
                 {
+                    alert("Error!!");
                     error(er);
                 }
             }
@@ -89,7 +91,8 @@ var replyService=(function(){
 
     function get(rno,callback,error) {
 
-        $.get("/replies/"+rno+".json"+function (result) {
+        console.log("call GET");
+        $.get("/replies/"+rno+".json",function (result) {
             if(callback) {
                 callback(result);
             }
@@ -118,12 +121,12 @@ var replyService=(function(){
         } else {
             var yy = dataObj.getFullYear();
             var mm = dataObj.getMonth() + 1;
-            var dd = dataObj.getData();
+            var dd = dataObj.getDate();
 
             return [yy, '/', (mm > 9 ? '' : '0') + mm, '/', (dd > 9 ? '' : '0') + dd].join('');
         }
     }
-    
+
     return {
         add:add,
         getList:getList,

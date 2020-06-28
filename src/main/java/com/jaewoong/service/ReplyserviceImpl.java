@@ -1,6 +1,7 @@
 package com.jaewoong.service;
 
 import com.jaewoong.domain.Criteria;
+import com.jaewoong.domain.ReplyPageDTO;
 import com.jaewoong.domain.ReplyVO;
 import com.jaewoong.mapper.ReplyMapper;
 import lombok.Setter;
@@ -48,4 +49,11 @@ public class ReplyserviceImpl implements ReplyService {
         return mapper.getListWithPaging(cri,bno);
     }
 
+    @Override
+    public ReplyPageDTO getListPage(Criteria cri, Long bno) {
+        return new ReplyPageDTO(
+                mapper.getCountByBno(bno),
+                mapper.getListWithPaging(cri,bno)
+        );
+    }
 }

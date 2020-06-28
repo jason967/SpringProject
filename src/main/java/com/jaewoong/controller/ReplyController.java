@@ -2,6 +2,7 @@ package com.jaewoong.controller;
 
 
 import com.jaewoong.domain.Criteria;
+import com.jaewoong.domain.ReplyPageDTO;
 import com.jaewoong.domain.ReplyVO;
 import com.jaewoong.service.ReplyService;
 
@@ -35,7 +36,7 @@ public class ReplyController {
     @GetMapping(value = "pages/{bno}/{page}",produces = {
             MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_UTF8_VALUE})
-    public ResponseEntity<List<ReplyVO>> getList(
+    public ResponseEntity<ReplyPageDTO> getList(
             @PathVariable("page") int page,
             @PathVariable("bno") Long bno)
     {
@@ -43,8 +44,9 @@ public class ReplyController {
         Criteria cri = new Criteria(page,10);
         log.info(cri);
 
-        return new ResponseEntity<>(service.getList(cri,bno),HttpStatus.OK);
+        return new ResponseEntity<>(service.getListPage(cri,bno),HttpStatus.OK);
     }
+
 
     @GetMapping(value = "/{rno}",
     produces = {
@@ -79,5 +81,7 @@ public class ReplyController {
 
        return service.modify(vo)==1?new ResponseEntity<>("success",HttpStatus.OK): new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
 
 }
