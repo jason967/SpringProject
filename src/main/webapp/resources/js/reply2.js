@@ -62,14 +62,14 @@ var replyService=(function(){
             }
         });
     }
-
+//댓글 수정
     function update(reply,callback,error) {
-        console.log("RNO: "+reply.rno);
+        console.log("Update->RNO: "+reply.rno);
 
         $.ajax({
             type:'put',
             url:'/replies/'+reply.rno,
-            date: JSON.stringify(reply),
+            data: JSON.stringify(reply),
             contentType: "application/json; charset=utf-8",
             success: function (result,status,xhr) {
                 if (callback)
@@ -94,6 +94,7 @@ var replyService=(function(){
         console.log("call GET");
         $.get("/replies/"+rno+".json",function (result) {
             if(callback) {
+                console.log("get IN");
                 callback(result);
             }
         }).fail(function (xhr,status,err) {
