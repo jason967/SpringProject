@@ -12,7 +12,7 @@
 
     <!-- Application Loggers -->
     <logger name="com.jaewoong.controller">
-        <level value="warn" />
+        <level value="info" />
     </logger>
 
     <!-- 3rdparty Loggers -->
