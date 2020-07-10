@@ -1,6 +1,7 @@
 package com.jaewoong.controller;
 
 import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,12 +9,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 @Controller
 @Log4j
 public class UploadController {
+
+    private boolean checkImage(File file)
+    {
+        try {
+            String contentType = Files.probeContentType(file.toPath());
+
+            return contentType.startsWith("image");
+        }catch (IOException e)
+        {
+            //TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     private String getFolder()
     {
@@ -86,14 +105,25 @@ public class UploadController {
             uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
             log.info("only file name: "+uploadFileName);
 
-            File saveFile = new File(uploadPath,uploadFileName);
+            UUID uuid = UUID.randomUUID();
+
+            uploadFileName = uuid.toString()+"_"+uploadFileName;
+
+
 
             try
             {
+                File saveFile = new File(uploadPath,uploadFileName);
                 multipartFile.transferTo(saveFile);
+                if(checkImage(saveFile))
+                {
+                    FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
+                    Thumbnailator.createThumbnail(multipartFile.getInputStream(),thumbnail,100,100);
+                    thumbnail.close();
+                }
             }catch (Exception e)
             {
-                log.error(e.getMessage());
+               e.printStackTrace();
             }
         }
 
