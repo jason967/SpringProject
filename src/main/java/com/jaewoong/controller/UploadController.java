@@ -4,11 +4,13 @@ import com.jaewoong.domain.AttachFileDTO;
 import lombok.Data;
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,7 +33,31 @@ import java.util.UUID;
 @Data
 public class UploadController {
 
-    private boolean checkImage(File file)
+    @GetMapping("/display")
+    @ResponseBody
+    public ResponseEntity<byte[]> getFile(String fileName)
+    {
+        log.info("fileName: "+fileName);
+
+        File file = new File("C:\\Users\\choi\\Desktop\\Project\\upload"+fileName);
+        log.info("file: " + file);
+
+        ResponseEntity<byte[]> result = null;
+
+        try
+        {
+            HttpHeaders headers =new HttpHeaders();
+
+            headers.add("Content-Type",Files.probeContentType(file.toPath()));
+            result=new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),headers,HttpStatus.OK);
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private boolean checkImageType(File file)
     {
         try {
             String contentType = Files.probeContentType(file.toPath());
@@ -133,7 +159,7 @@ public class UploadController {
                 attachDTO.setUuid(uuid.toString());
                 attachDTO.setUploadPath(uploadFileName);
 
-                if(checkImage(saveFile))
+                if(checkImageType(saveFile))
                 {
                     attachDTO.setImage(true);
                     FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
