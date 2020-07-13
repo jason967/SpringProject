@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
 <html>
 <head>
     <title>Upload Ajax</title>
@@ -15,6 +18,41 @@
 <h1>Upload With Ajax</h1>
 <div class="uploadDiv">
     <input type="file" name="uploadFile" multiple>
+
+    <style>
+
+        .uploadResult
+        {
+            width:100%;
+            background-color: gray;
+        }
+
+        .uploadResult ul{
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .uploadResult ul li{
+            list-style: none;
+            padding: 10px;
+        }
+
+        .uploadResult ul li{
+            list-style: none;
+            padding: 10px;
+        }
+        .uploadResult ul li img
+        {
+            width: 20px;
+        }
+    </style>
+    <div class='uploadResult'>
+        <ul>
+
+        </ul>
+    </div>
 </div>
 <button id="uploadBtn">Upload</button>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -23,6 +61,26 @@
 
 <script>
     $(document).ready(function () {
+
+
+        var uploadResult = $('.uploadResult ul');
+        function showUploadedFile(uploadResultArr) {
+            var str ="";
+
+            $(uploadResultArr).each(function (i,obj)
+            {
+                if(!obj.image)
+                {
+                    str+="<li><img src='/resources/img/attach.png'>"+obj.fileName+"</li>";
+                }
+                else
+                {
+                    str +="<li>"+obj.fileName +"</li>";
+                }
+
+            });
+            uploadResult.append(str);
+        }
 
         var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
         var maxSize = 5242880;
@@ -43,6 +101,7 @@
             return true;
         }
 
+        var cloneObj = $(".uploadDiv").clone();
 
         $("#uploadBtn").on("click",function (e) {
 
@@ -67,7 +126,9 @@
                 type:'post',
                 dataType:'json',
                 success:function (result) {
-                    alert("Uploaded")
+
+                    console.log(result);
+                    $(".uploadDiv").html(cloneObj.html());
                 }
             });
 
