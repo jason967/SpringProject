@@ -16,71 +16,53 @@
 </head>
 <body>
 <h1>Upload With Ajax</h1>
+<style>
+
+    .uploadResult
+    {
+        width:100%;
+        background-color: gray;
+    }
+
+    .uploadResult ul{
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .uploadResult ul li{
+        list-style: none;
+        padding: 10px;
+    }
+
+    .uploadResult ul li{
+        list-style: none;
+        padding: 10px;
+    }
+    .uploadResult ul li img
+    {
+        width: 20px;
+    }
+</style>
 <div class="uploadDiv">
     <input type="file" name="uploadFile" multiple>
+</div>
 
-    <style>
-
-        .uploadResult
-        {
-            width:100%;
-            background-color: gray;
-        }
-
-        .uploadResult ul{
-            display: flex;
-            flex-flow: row;
-            justify-content: center;
-            align-content: center;
-        }
-
-        .uploadResult ul li{
-            list-style: none;
-            padding: 10px;
-        }
-
-        .uploadResult ul li{
-            list-style: none;
-            padding: 10px;
-        }
-        .uploadResult ul li img
-        {
-            width: 20px;
-        }
-    </style>
     <div class='uploadResult'>
         <ul>
 
         </ul>
     </div>
-</div>
+
+
 <button id="uploadBtn">Upload</button>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 
 <script>
-    $(document).ready(function () {
 
-
-        var uploadResult = $('.uploadResult ul');
-        function showUploadedFile(uploadResultArr) {
-            var str ="";
-
-            $(uploadResultArr).each(function (i,obj)
-            {
-                if(!obj.image)
-                {
-                    str+="<li><img src='/resources/img/attach.png'>"+obj.fileName+"</li>";
-                }
-                else
-                {
-                    str +="<li>"+obj.fileName +"</li>";
-                }
-
-            });
-            uploadResult.append(str);
-        }
 
         var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
         var maxSize = 5242880;
@@ -107,14 +89,18 @@
 
             var formData = new FormData();
 
-            var inpuFile = $("input[name='uploadFile']");
+            var inputFile = $("input[name='uploadFile']");
 
-            var files = inpuFile[0].files;
+            var files = inputFile[0].files;
 
             console.log(files);
 
             for(var i =0;i<files.length;i++)
             {
+                if(!checkExtension(files[i].name,files[i].size))
+                {
+                    return false;
+                }
                 formData.append("uploadFile",files[i]);
             }
 
@@ -127,14 +113,40 @@
                 dataType:'json',
                 success:function (result) {
 
-                    console.log(result);
+                    console.log("helpMe"+result);
+                    showUploadedFile(result);
                     $(".uploadDiv").html(cloneObj.html());
                 }
             });
 
         });
 
-    });
+    var uploadResult = $(".uploadResult ul");
+
+    function showUploadedFile(uploadResultArr) {
+        var str ="";
+
+        $(uploadResultArr).each(
+            function (i,obj)
+            {
+                console.log(obj.image);
+                if(!obj.image)
+                {
+                    str+="<li><img src='/resources/img/attach.jpg'>"+obj.fileName+"</li>";
+                }
+                else
+                {
+                    //str +="<li>"+obj.fileName +"</li>";
+                    var fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
+
+                    str+="<li><img src='/display?fileName="+fileCallPath+"'><li>";
+                }
+
+            });
+
+        uploadResult.append(str);
+        console.log(str);
+    }
 </script>
 </body>
 </html>
